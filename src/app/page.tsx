@@ -2,14 +2,49 @@ import { ContainerScroll } from "@/src/components/global/container-scroll-animai
 import { Navbar } from "@/src/components/global/navbar";
 
 import { Button } from "@/src/components/ui/button";
-import { InfiniteMovingCards } from "../components/global/infinite-moving-cards";
+// import { InfiniteMovingCards } from "../components/global/infinite-moving-cards";
+import { InfiniteMovingCards } from "@/src/components/global/infinite-moving-demo";
 import { clients, products } from "@/src/lib/constants";
 import { HeroParallax } from "@/src/components/global/connect-parallax";
 import { LampComponent } from "@/src/components/global/lamp";
 import { CardContainer, CardBody, CardItem } from "@/src/components/global/3d-card";
 import { CheckIcon } from "lucide-react";
 
+// testing data for infinite moving cards
+const testimonials = [
+  {
+    quote:
+      "It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair.",
+    name: "Charles Dickens",
+    title: "A Tale of Two Cities",
+  },
+  {
+    quote:
+      "To be, or not to be, that is the question: Whether 'tis nobler in the mind to suffer The slings and arrows of outrageous fortune, Or to take Arms against a Sea of troubles, And by opposing end them: to die, to sleep.",
+    name: "William Shakespeare",
+    title: "Hamlet",
+  },
+  {
+    quote: "All that we see or seem is but a dream within a dream.",
+    name: "Edgar Allan Poe",
+    title: "A Dream Within a Dream",
+  },
+  {
+    quote:
+      "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.",
+    name: "Jane Austen",
+    title: "Pride and Prejudice",
+  },
+  {
+    quote:
+      "Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.",
+    name: "Herman Melville",
+    title: "Moby-Dick",
+  },
+];
+
 export default function Home() {
+  
   return (
     <main className="flex flex-col justify-center items-center">
       <Navbar />
@@ -36,17 +71,20 @@ export default function Home() {
         </div>
       </section>
       <section>
-      <InfiniteMovingCards
+      {/* <InfiniteMovingCards
         className="md:mt-[18rem] mt-[-100px]"
         items={clients}
         direction="right"
         speed="fast"
-      />
+      /> */}
+      <InfiniteMovingCards items={testimonials}
+        direction="right"
+        speed="slow"/>
       </section>
       <section>
         <HeroParallax products={products}></HeroParallax>
       </section>
-      <section className="mt-[-500px">
+      <section className="mt-[-500px]">
           <LampComponent />
           <div className="flex flex-wrap items-center justify-center flex-col gap-8 -mt-72 md:flex-row">
             <CardContainer className="inter-var">
