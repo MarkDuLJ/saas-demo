@@ -1,10 +1,33 @@
+import ProfileForm from "@/src/components/forms/profile-form"
 import { Metadata } from "next"
 import React from 'react'
 export const metadata:Metadata = {
-    title:"Dashboard"
+    title:"Setting"
 }
-export default function DashBoardPage(){
+export default function SettingPage(){
     return (
-        <div>Page</div>
+        <div className="flex flex-col gap4">
+            <h1 className="sticky top-0 z-[10] flex items-center justify-center border-b bg-background/50 p-6 text-4xl backdrop-blur-lg"
+            >
+                <span>Settings</span>
+            </h1>
+            <div className="flex flex-col gap-10 p-6">
+        <div>
+          <h2 className="text-2xl font-bold">User Profile</h2>
+          <p className="text-base text-white/50">
+            Add or update your information
+          </p>
+        </div>
+        {/* <ProfilePicture
+          onDelete={removeProfileImage}
+          userImage={user?.profileImage || ''}
+          onUpload={uploadProfileImage}
+        /> */}
+        <ProfileForm
+          user="Mark"
+        //   onUpdate={updateUserInfo}
+        />
+      </div>
+        </div>
     )
 }
