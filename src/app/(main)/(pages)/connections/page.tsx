@@ -1,7 +1,7 @@
 import { Metadata } from "next"
 import React from 'react'
 export const metadata:Metadata = {
-    title:"Dashboard"
+    title:"Connections"
 }
 export default function DashBoardPage(){
     return (

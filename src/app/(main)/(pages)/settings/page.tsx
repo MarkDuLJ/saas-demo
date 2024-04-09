@@ -1,10 +1,62 @@
 import ProfileForm from "@/src/components/forms/profile-form"
 import { Metadata } from "next"
 import React from 'react'
+import { ProfilePicture } from "./_components/profile-picture"
+import { db } from "@/src/lib/db"
+import { currentUser } from "@clerk/nextjs"
 export const metadata:Metadata = {
     title:"Setting"
 }
-export default function SettingPage(){
+export default async function SettingPage(){
+  const authUser = await currentUser()
+  if(!authUser) return null
+
+  const user = await db.user.findUnique({
+    where: {clerkId: authUser.id}
+  })
+
+  const removeProfileImage = async () => {
+    'use server'
+    const response = await db.user.update({
+      where: {
+        clerkId: authUser.id,
+      },
+      data: {
+        profileImage: '',
+      },
+    })
+    return response
+  }
+
+  const uploadProfileImage = async (image: string) => {
+    'use server'
+    const id = authUser.id
+    const response = await db.user.update({
+      where: {
+        clerkId: id,
+      },
+      data: {
+        profileImage: image,
+      },
+    })
+
+    return response
+  }
+
+  const updateUserInfo = async (name: string) => {
+    'use server'
+
+    const updateUser = await db.user.update({
+      where: {
+        clerkId: authUser.id,
+      },
+      data: {
+        name,
+      },
+    })
+    return updateUser
+  }
+
     return (
         <div className="flex flex-col gap4">
             <h1 className="sticky top-0 z-[10] flex items-center justify-center border-b bg-background/50 p-6 text-4xl backdrop-blur-lg"
@@ -18,14 +70,14 @@ export default function SettingPage(){
             Add or update your information
           </p>
         </div>
-        {/* <ProfilePicture
+        <ProfilePicture
           onDelete={removeProfileImage}
           userImage={user?.profileImage || ''}
           onUpload={uploadProfileImage}
-        /> */}
+        />
         <ProfileForm
           user="Mark"
-        //   onUpdate={updateUserInfo}
+          onUpdate={updateUserInfo}
         />
       </div>
         </div>
