@@ -76,7 +76,7 @@ export default async function SettingPage(){
           onUpload={uploadProfileImage}
         />
         <ProfileForm
-          user="Mark"
+          user={user}
           onUpdate={updateUserInfo}
         />
       </div>

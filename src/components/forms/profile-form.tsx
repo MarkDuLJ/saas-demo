@@ -23,6 +23,8 @@ type Props = {
 }
 
 const ProfileForm = ({ user, onUpdate }: Props) => {
+  console.log(user.email);
+  
   const [isLoading, setIsLoading] = useState(false)
   const form = useForm<z.infer<typeof EditUserProfileSchema>>({
     mode: 'onChange',
@@ -51,7 +53,7 @@ const ProfileForm = ({ user, onUpdate }: Props) => {
         className="flex flex-col gap-6"
         onSubmit={form.handleSubmit(handleSubmit)}
       >
-        <FormField
+<FormField
           disabled={isLoading}
           control={form.control}
           name="name"
